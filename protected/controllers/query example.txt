@@ -1,0 +1,45 @@
+1. Supply a $condition as string:
+Person::model()->findByAttributes(
+    array('first_name'=>$firstName,'last_name'=>$lastName),
+    'status=1'
+);
+
+
+2. Supply a $condition as string that contains placeholder and $params as array with placeholder values:
+Person::model()->findByAttributes(
+    array('first_name'=>$firstName,'last_name'=>$lastName),
+    'status=:status',
+    array(':status'=>1)
+);
+
+
+3. Supply a $condition as a CDbCriteria:
+$criteria=New CDbCritieria;
+$critieria->condition='status=1';
+
+Person::model()->findByAttributes(
+    array('first_name'=>$firstName,'last_name'=>$lastName),
+    $criteria
+);
+
+
+4. Supply a $condition as array with property values for CDbCriteria:
+Person::model()->findByAttributes(
+    array('first_name'=>$firstName,'last_name'=>$lastName),
+    array(
+        'condition'=>'status=:status', 
+        'params'=>array(':status'=>1)
+    )
+);
+
+
+
+
+
+// findAll
+
+$model=name of model::model()->findAll(array(
+'order'=>'create_time DESC',
+'limit'=> Yii::app()->params['postsPerFeedCount'],
+)); 
+
